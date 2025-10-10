@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "96241d30-c930-44a1-a363-9f976da8240a",
+		"name": "TICKET-TAC!",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18518239"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const token = await pm.response.json();",
+									"console.log('token', token.access_token);",
+									"//pm.cookies.jar().set(\"http://localhost:3000\", \"token\", token.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"username\",\n    \"password\" : \"YQ==\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGOUT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.cookies.jar().clear('http://localhost:3000');"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SIGN_UP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"johndoe@email.co.uk\",\n    \"username\": \"username\",\n    \"password\": \"a\",\n    \"phone\": \"07333333\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Apis to handle authentication on the system"
+		},
+		{
+			"name": "TICKETS",
+			"item": [
+				{
+					"name": "GROUPED",
+					"item": [
+						{
+							"name": "GET_TICKETS_CANBAN",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/secured/tickets/grouped",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"secured",
+										"tickets",
+										"grouped"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/secured/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "dueDate",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "status",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Apis to interact with tickets model"
+		},
+		{
+			"name": "TICKET",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket?recordId=68e981b33a75539bed5ccacf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket"
+							],
+							"query": [
+								{
+									"key": "recordId",
+									"value": "68e981b33a75539bed5ccacf"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Ticket A\",\n    \"description\": \"Description of the task here\",\n    \"dueDate\": \"11/11/2026\",\n    \"status\": \"PENDING\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_ONE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket?recordId=68e93009cb7d05a9e968ca8b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket"
+							],
+							"query": [
+								{
+									"key": "recordId",
+									"value": "68e93009cb7d05a9e968ca8b"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Apis to interact with Ticket model"
+		},
+		{
+			"name": "COMMENT",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Comment's title\",\n    \"description\" : \"Description here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket/comment?ticketId=68e93009cb7d05a9e968ca8b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "ticketId",
+									"value": "68e93009cb7d05a9e968ca8b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_ONE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket/comment?ticketId=68e93009cb7d05a9e968ca8b&recordId=68e93090cb7d05a9e968ca91",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "ticketId",
+									"value": "68e93009cb7d05a9e968ca8b"
+								},
+								{
+									"key": "recordId",
+									"value": "68e93090cb7d05a9e968ca91"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_TICKET_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket/comment?recordId=68e93009cb7d05a9e968ca8b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "recordId",
+									"value": "68e93009cb7d05a9e968ca8b"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Apis to interact with comment model"
+		},
+		{
+			"name": "COMMENTS",
+			"item": [
+				{
+					"name": "GET_COMMENTS_BY_IDS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"68e930a0cb7d05a9e968ca95\"\n]"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL_COMMENTS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/secured/ticket/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"secured",
+								"ticket",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

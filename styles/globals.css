@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@reference "tailwindcss";
+
+.btn {
+  @apply
+  hover:ring-2
+  hover:opacity-75
+  cursor-pointer
+  hover:ring-offset-2
+  px-12
+  py-2
+  rounded-lg
+  text-lg
+  font-semibold
+  disabled:cursor-not-allowed
+  disabled:bg-gray-950
+  disabled:text-white
+  border-none
+}
+
+.btn-danger {
+  @apply
+  bg-red-700
+  ring-red-300
+  text-white
+}
+
+.btn-primary {
+  @apply
+  bg-orange-600
+  ring-orange-200
+  text-white
+}
+
+.btn-secondary {
+  @apply
+  bg-gray-500
+  ring-slate-200
+  text-white
+}
+
+.btn-success {
+  @apply
+  bg-green-500
+  ring-green-200
+  text-white
+}
+
+.btn-tertiary {
+  @apply
+  bg-yellow-600
+  ring-orange-200
+  text-white
+}
+
+.toast-base {
+  @apply
+  bg-white
+  px-4
+  text-xl
+  py-0.5
+  rounded-sm
+  shadow-lg
+  border-l-10
+}
+
+.toast-success {
+  @apply
+  border-l-green-500
+}
+
+.toast-error {
+  @apply
+  border-l-red-600
+}
+
+.toast-info {
+  @apply
+  border-l-cyan-600
+}
+
+.toast-warning {
+  @apply
+  border-l-orange-600
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+
+.base-modal-container {
+  @apply
+  fixed
+  inset-0
+  flex
+  bg-black/50
+  items-center
+  justify-center
+  transition-opacity
+  duration-300
+  overflow-hidden
+}
+
+.modal-z {
+  @apply
+  z-20
+}
+
+.spinner-z {
+  @apply
+  z-50
+}
+
+.modal-visible {
+  @apply
+  opacity-100
+  pointer-events-auto
+}
+
+.modal-invisible {
+  @apply
+  opacity-0
+  pointer-events-none
+}
+
+.bg-stripes {
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.12) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.12) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}
+@keyframes stripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 1rem 0; }
+}
+.animate-stripes { animation: stripes 1s linear infinite; }
+
+
+.base-dropdown {
+  @apply
+  text-start
+  pl-10
+  rounded
+  w-full
+  h-10
+  py-1.5
+  z-20
+  text-gray-500
+  bg-slate-200
+  focus:ring-orange-600
+  focus:ring-offset-2
+  focus:ring-2
+  outline-none
+  cursor-pointer
+  border-none
+}
