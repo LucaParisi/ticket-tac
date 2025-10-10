@@ -1,5 +1,5 @@
 import {BaseModal} from "@/components/modals/base-modal.component";
-import {AdjustmentsHorizontalIcon, InformationCircleIcon, LightBulbIcon, XMarkIcon} from "@heroicons/react/24/outline";
+import {AdjustmentsHorizontalIcon, InformationCircleIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {Button, DateInput, Dropdown, TextAreaInput, TextInput} from "@components";
 import {useEffect, useState} from "react";
 import {BaseResponse, TicketCreation} from "@interfaces";

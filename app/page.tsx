@@ -5,7 +5,6 @@ import {Button, PasswordInput, Spinner, TextInput} from "@components";
 import {UserIcon} from "@heroicons/react/24/outline";
 import {showErrorToast} from "@/hooks";
 import axios from "axios";
-import {BearerToken} from "@interfaces";
 import {RegisterNewUserModal} from "@/components/modals/register-new-user.modal";
 import { useRouter } from "next/navigation";
 
@@ -21,8 +20,7 @@ export default function LoginPage() {
         setLoading(true);
         const encryptedPassword = btoa(password);
         try{
-            const result = await axios.post('/api/auth/login', {username, password: encryptedPassword}, {withCredentials: true})
-            const credentials = result.data as BearerToken;
+            await axios.post('/api/auth/login', {username, password: encryptedPassword}, {withCredentials: true})
             router.push('/secured/home');
             setUsername("");
             setPassword("");
