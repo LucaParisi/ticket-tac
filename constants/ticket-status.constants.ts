@@ -1,0 +1,1 @@
+export const TICKET_STATUSES = ['PENDING', 'TODO', 'WORKING', 'REJECTED', 'DONE']
