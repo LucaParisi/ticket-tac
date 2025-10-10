@@ -1,6 +1,6 @@
 "use client"
 
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import { BaseResponse, Ticket } from "@interfaces";
 import axios from "axios";
 import {Table} from "@/components/table";
@@ -37,14 +37,7 @@ export default function HomePage() {
     const [showCommentModal, setShowCommentModal] = useState<boolean>(false);
     const [sortingFieldLabel, setSortingFieldLabel] = useState<string>('');
 
-    useEffect(() => {
-        if(showTicketModal) return;
-
-        fetchAllTickets();
-
-    }, [title, status, showTicketModal, showCommentModal, dueDate, sortingFieldLabel])
-
-    const fetchAllTickets = () => {
+    const fetchAllTickets = useCallback(() => {
         const formattedDueDate = formatDateFromJsDate(dueDate, '-');
         const sortingField = getTaskGroupingByFieldByLabel(sortingFieldLabel);
         console.log('SORTING FIELD', sortingField)
@@ -53,7 +46,14 @@ export default function HomePage() {
                 const data = res.data as Ticket[];
                 setTickets(data);
             })
-    }
+    }, [dueDate, sortingFieldLabel, status, title])
+
+    useEffect(() => {
+        if(showTicketModal) return;
+
+        fetchAllTickets();
+
+    }, [title, status, showTicketModal, showCommentModal, dueDate, sortingFieldLabel, fetchAllTickets])
 
     const refreshTicketToView = () => {
         if(!viewTicket) return;

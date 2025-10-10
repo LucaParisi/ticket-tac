@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import {connectToDatabase} from "@lib";
-import {TicketComment, TicketCommentCreation} from "@interfaces";
+import {TicketComment} from "@interfaces";
 import { TicketModel, TicketCommentModel, UserModel } from "@models";
 import { jwtVerify } from 'jose';
 import {Types} from "mongoose";
