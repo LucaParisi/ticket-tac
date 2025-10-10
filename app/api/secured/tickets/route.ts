@@ -2,6 +2,7 @@ import {connectToDatabase} from "@lib";
 import { TicketModel } from "@models";
 import {NextResponse} from "next/server";
 import {DateTime} from "luxon";
+import {TicketQuery} from "@interfaces";
 
 await connectToDatabase();
 
@@ -15,12 +16,11 @@ export async function GET(req: Request) {
     let dueDate: Date;
     try {
         dueDate = DateTime.fromFormat(dueDateString, "dd-MM-yyyy").toJSDate();
-    } catch (err) {
+    } catch {
         dueDate = new Date("9999-12-31");
     }
 
-    console.log(orderBy)
-    const query: any = {};
+    const query: TicketQuery = {};
     if (title) query.title = { $regex: new RegExp(title, "i") };
     if (status) query.status = { $regex: new RegExp(status, "i") };
     if (dueDate) query.dueDate = { $lt: dueDate };

@@ -7,4 +7,5 @@ export * from './ticket.interface';
 export * from './ticket-comment.interface';
 export * from './ticket-comment-creation.intefrace';
 export * from './ticket-creation.interface';
+export * from './ticket-query.interface';
 export * from './user.interface';
